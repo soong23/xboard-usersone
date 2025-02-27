@@ -1,0 +1,4 @@
+[
+  { "source": "/", "destination": "/landing.html", "status": 200 },
+  { "source": "/dashboard", "destination": "/index.html", "status": 200 }
+]

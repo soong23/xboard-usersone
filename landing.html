@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>欢迎来到 Xboard</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; font-family: Arial, sans-serif; }
+        .landing-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: #f4f4f4;
+            text-align: center;
+            height: 100vh;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="landing-page">
+        <h1>欢迎来到 Xboard</h1>
+        <p>您的数据分析与管理平台</p>
+        <button class="btn" onclick="window.location.href='/dashboard'">进入 Xboard</button>
+    </div>
+</body>
+</html>

@@ -2,9 +2,9 @@
 window.routerBase = 'https://occultumvpn.com/'
 window.settings = {
   // 站点名称
-  title: 'Xboard',
+  title: 'Occultum',
   // 站点描述
-  description: 'Xboard',
+  description: 'Occultum 高速 安全 可靠',
   assets_path: '/assets',
   // 主题色
   theme: {
@@ -13,7 +13,7 @@ window.settings = {
   // 版本号
   version: '0.1.1-dev',
   // 登陆背景
-  background_url: '',
+  background_url: '/app/assets/images/occultum-logo.webp',
   // 站点LOGO
-  logo: '',
+  logo: 'Occultum',
 }

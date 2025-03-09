@@ -31,14 +31,20 @@ document.addEventListener('DOMContentLoaded', () => {
   before.style.zIndex = '-1';
   document.body.appendChild(before);
 
-  // 为 Logo 添加首页链接
+  // 为 Logo 添加首页链接和样式
   const logoImg = document.querySelector('.text-center img[src="/app/assets/images/occultum-logo.webp"]') ||
-                  document.querySelector('.mb-1em.max-w-100%');
+                  document.querySelector('.mb-1em') ||
+                  document.querySelector('.max-w-100%') ||
+                  document.querySelector('.max-w-full');
   if (logoImg) {
+    // 添加链接
     const link = document.createElement('a');
     link.href = 'https://shop.occultumvpn.com/';
-    link.style.display = 'inline-block'; // 保持布局
+    link.style.display = 'inline-block';
     logoImg.parentNode.insertBefore(link, logoImg);
     link.appendChild(logoImg);
+    // 设置样式
+    logoImg.style.maxWidth = '80%';
+    logoImg.style.height = 'auto';
   }
 });

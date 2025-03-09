@@ -52,7 +52,7 @@
       text-align: center;
     }
     .intro {
-      max-width: 1440px; /* 外边框宽度限制为 1440px */
+      max-width: 1440px;
       margin: 20px auto;
       padding: 10px;
       background-color: #fff;
@@ -60,8 +60,8 @@
       border-radius: 5px;
     }
     .intro-inner {
-      max-width: 1300px; /* 内部元素宽度限制为 1200px */
-      margin: 60px auto; /* 居中 */
+      max-width: 1300px;
+      margin: 60px auto;
       display: flex;
       align-items: center;
       gap: 60px;
@@ -75,7 +75,7 @@
       flex: 1;
     }
     .features {
-      max-width: 1440px; /* 外边框宽度限制为 1440px */
+      max-width: 1440px;
       margin: 20px auto;
       padding: 10px;
       background-color: #fff;
@@ -83,8 +83,8 @@
       border-radius: 5px;
     }
     .features-inner {
-      max-width: 1300px; /* 内部元素宽度限制为 1200px */
-      margin: 60px auto; /* 居中 */
+      max-width: 1300px;
+      margin: 60px auto;
     }
     .features-grid {
       display: grid;
@@ -108,6 +108,53 @@
       color: #28a745;
       position: absolute;
       left: 0;
+    }
+    .pricing {
+      max-width: 1440px;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: #fff;
+      color: #000;
+      border-radius: 5px;
+    }
+    .pricing-inner {
+      max-width: 1300px;
+      margin: 60px auto;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px;
+    }
+    .pricing-item {
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .pricing-item h4 {
+      margin: 0 0 10px 0;
+      color: #003087;
+    }
+    .pricing-plan {
+      margin: 10px 0;
+    }
+    .pricing-plan span {
+      font-weight: bold;
+      color: #28a745;
+    }
+    .subscribe-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    .subscribe-btn:hover {
+      background-color: #0056b3;
     }
     .login-btn {
       padding: 10px 20px;
@@ -147,11 +194,18 @@
         grid-template-columns: 1fr;
         gap: 30px;
       }
+      .pricing {
+        padding: 40px;
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
       .content {
         margin: 20px;
         padding: 10px;
       }
-      .login-btn {
+      .login-btn, .subscribe-btn {
         font-size: 14px;
         padding: 8px 16px;
       }
@@ -203,6 +257,33 @@
           <ul>
             <li>多设备同步支持</li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pricing">
+    <div class="pricing-inner">
+      <h2>产品套餐</h2>
+      <div class="pricing-grid">
+        <div class="pricing-item">
+          <h4>基础套餐</h4>
+          <div class="pricing-plan">
+            <p>月度订阅: <span>29 元</span></p>
+          </div>
+          <div class="pricing-plan">
+            <p>年度订阅: <span>299 元</span></p>
+          </div>
+          <a href="/app/#/login" class="subscribe-btn">立即订阅</a>
+        </div>
+        <div class="pricing-item">
+          <h4>高级套餐</h4>
+          <div class="pricing-plan">
+            <p>月度订阅: <span>59 元</span></p>
+          </div>
+          <div class="pricing-plan">
+            <p>年度订阅: <span>599 元</span></p>
+          </div>
+          <a href="/app/#/login" class="subscribe-btn">立即订阅</a>
         </div>
       </div>
     </div>

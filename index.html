@@ -30,16 +30,19 @@
       z-index: -1;
     }
     .navbar {
-      background-color: transparent; /* 背景颜色改为透明 */
-      max-width: 1440px; /* 宽度限制为 1440px */
-      margin: 25px auto; /* 上下外边距 25px，居中 */
-      padding: 0 10px; /* 左右内边距 10px */
+      background-color: transparent;
+      max-width: 1440px;
+      margin: 25px auto;
+      padding: 0 10px;
       display: flex;
       align-items: center;
-      justify-content: space-between; /* Logo 靠左，导航靠右 */
+      justify-content: space-between;
+    }
+    .navbar a.logo-link {
+      display: inline-block;
     }
     .navbar img {
-      height: 40px; /* Logo 高度 */
+      height: 40px; /* 限制 Logo 高度为 40px */
       vertical-align: middle;
     }
     .navbar .nav-links {
@@ -227,7 +230,7 @@
       .navbar {
         flex-direction: column;
         padding: 5px 10px;
-        margin: 15px auto; /* 移动端减小上下外边距 */
+        margin: 15px auto;
       }
       .navbar img {
         margin: 0 0 10px 0;
@@ -244,7 +247,9 @@
 </head>
 <body>
   <div class="navbar">
-    <img src="/app/assets/images/occultum-logo.webp" alt="Occultum VPN Logo">
+    <a href="https://shop.occultumvpn.com/" class="logo-link">
+      <img src="/app/assets/images/occultum-logo.webp'" alt="Occultum VPN Logo">
+    </a>
     <div class="nav-links">
       <a href="/">首页</a>
       <a href="/app/#/login">登录</a>

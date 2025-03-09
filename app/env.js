@@ -4,7 +4,7 @@ window.settings = {
   // 站点名称
   title: 'Occultum',
   // 站点描述
-  description: 'Occultum 高速 安全 可靠',
+  description: '高速 安全 可靠',
   assets_path: '/assets',
   // 主题色
   theme: {

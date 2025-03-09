@@ -2,7 +2,7 @@
 window.routerBase = 'https://occultumvpn.com/'
 window.settings = {
   // 站点名称
-  title: 'Occultum',
+  title: '',
   // 站点描述
   description: '高速 安全 可靠',
   assets_path: '/assets',

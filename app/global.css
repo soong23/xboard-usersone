@@ -2,8 +2,6 @@
   background: rgba(0, 0, 0, 0.5) !important;
 }
 .text-center img[src="/app/assets/images/occultum-logo.webp"],
-.mb-1em,
-.max-w-100%,
 .wh-full .text-center img {
   max-width: 80% !important;
   height: auto !important;

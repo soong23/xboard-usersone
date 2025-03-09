@@ -1,7 +1,7 @@
 // API地址
 window.routerBase = 'https://occultumvpn.com/'
 window.settings = {
-  title: 'Occultum',
+  title: '',
   description: '高速 安全 可靠',
   assets_path: '/assets',
   theme: {

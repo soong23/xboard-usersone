@@ -13,7 +13,7 @@ window.settings = {
   // 版本号
   version: '0.1.1-dev',
   // 登陆背景
-  background_url: '/app/assets/images/occultum-logo.webp',
+  background_url: '/app/assets/images/global-internet.webp',
   // 站点LOGO
-  logo: 'Occultum',
+  logo: '/app/assets/images/occultum-logo.webp',
 }

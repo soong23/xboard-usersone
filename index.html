@@ -16,6 +16,7 @@
       margin: 0;
       padding: 0;
       position: relative;
+      min-height: 100vh; /* 确保页面至少填满视口高度 */
     }
     body::before {
       content: '';
@@ -116,6 +117,7 @@
       background-color: #fff;
       color: #000;
       border-radius: 5px;
+      margin-bottom: 100px; /* 增加底部外边距，避免与 footer 太近 */
     }
     .pricing-inner {
       max-width: 1300px;
@@ -196,6 +198,7 @@
       }
       .pricing {
         padding: 40px;
+        margin-bottom: 50px; /* 移动端减少底部外边距 */
       }
       .pricing-grid {
         grid-template-columns: 1fr;

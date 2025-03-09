@@ -51,24 +51,51 @@
       border-radius: 10px;
       text-align: center;
     }
-    .intro, .features {
-      max-width: 1440px; /* 限制最大宽度 */
-      margin: 20px auto; /* 居中显示 */
+    .intro {
+      max-width: 1440px;
+      margin: 20px auto;
       padding: 15px;
       background-color: #fff;
-      color: #000; /* 确保文本可读 */
+      color: #000;
+      border-radius: 5px;
+      display: flex; /* 使用 Flexbox 实现图文布局 */
+      align-items: center;
+      gap: 20px; /* 图片和文字之间的间距 */
+    }
+    .intro img {
+      max-width: 40%; /* 图片占约 40% 宽度 */
+      height: auto;
       border-radius: 5px;
     }
-    .features ul {
-      list-style-type: none;
-      padding: 0;
+    .intro .text {
+      flex: 1; /* 文字部分占据剩余空间 */
     }
-    .features li {
-      margin: 10px 0;
+    .features {
+      max-width: 1440px;
+      margin: 20px auto;
+      padding: 15px;
+      background-color: #fff;
+      color: #000;
+      border-radius: 5px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 三列布局 */
+      gap: 20px; /* 列间距 */
+    }
+    .feature-item {
+      padding: 10px;
+      text-align: left;
+    }
+    .feature-item h4 {
+      margin: 0 0 5px 0;
+    }
+    .feature-item li {
+      margin: 5px 0;
       padding-left: 20px;
       position: relative;
     }
-    .features li:before {
+    .feature-item li:before {
       content: "✔";
       color: #28a745;
       position: absolute;
@@ -93,7 +120,17 @@
       bottom: 0;
       width: 100%;
     }
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
+      .intro {
+        flex-direction: column; /* 移动端堆叠显示 */
+        text-align: center;
+      }
+      .intro img {
+        max-width: 100%; /* 图片占满宽度 */
+      }
+      .features-grid {
+        grid-template-columns: 1fr; /* 移动端单列 */
+      }
       .content {
         margin: 20px;
         padding: 10px;
@@ -105,10 +142,6 @@
       .navbar a {
         margin: 0 10px;
         font-size: 14px;
-      }
-      .intro, .features {
-        margin: 10px;
-        padding: 10px;
       }
     }
   </style>
@@ -125,16 +158,34 @@
     <a href="/app/#/login" class="login-btn">登录</a>
   </div>
   <div class="intro">
-    <h3>关于我们</h3>
-    <p>Occultum VPN 提供全球范围内的安全网络连接，支持多平台，随时随地畅享无忧上网。</p>
+    <img src="/app/assets/images/about-us.jpg" alt="关于我们">
+    <div class="text">
+      <h3>关于我们</h3>
+      <p>Occultum VPN 提供全球范围内的安全网络连接，支持多平台，随时随地畅享无忧上网。</p>
+    </div>
   </div>
   <div class="features">
     <h3>我们的优势</h3>
-    <ul>
-      <li>无日志政策，保护隐私</li>
-      <li>全球高速服务器</li>
-      <li>多设备同步支持</li>
-    </ul>
+    <div class="features-grid">
+      <div class="feature-item">
+        <h4>隐私保护</h4>
+        <ul>
+          <li>无日志政策，保护隐私</li>
+        </ul>
+      </div>
+      <div class="feature-item">
+        <h4>高速连接</h4>
+        <ul>
+          <li>全球高速服务器</li>
+        </ul>
+      </div>
+      <div class="feature-item">
+        <h4>多设备支持</h4>
+        <ul>
+          <li>多设备同步支持</li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="footer">
     <p>© 2025 Occultum VPN. 联系我们: support@occultumvpn.com</p>

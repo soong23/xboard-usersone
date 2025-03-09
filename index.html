@@ -31,16 +31,20 @@
     }
     .navbar {
       background-color: #003087;
-      padding: 10px;
-      text-align: center;
+      max-width: 1440px; /* 宽度限制为 1440px */
+      margin: 25px auto; /* 上下外边距 25px，居中 */
+      padding: 0 10px; /* 左右内边距 10px */
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between; /* Logo 靠左，导航靠右 */
     }
     .navbar img {
       height: 40px; /* Logo 高度 */
-      margin-right: 20px; /* 与导航链接的间距 */
       vertical-align: middle;
+    }
+    .navbar .nav-links {
+      display: flex;
+      align-items: center;
     }
     .navbar a {
       color: white;
@@ -222,13 +226,17 @@
       }
       .navbar {
         flex-direction: column;
-        padding: 5px;
+        padding: 5px 10px;
+        margin: 15px auto; /* 移动端减小上下外边距 */
       }
       .navbar img {
         margin: 0 0 10px 0;
       }
+      .navbar .nav-links {
+        flex-direction: column;
+      }
       .navbar a {
-        margin: 0 10px;
+        margin: 5px 0;
         font-size: 14px;
       }
     }
@@ -237,10 +245,12 @@
 <body>
   <div class="navbar">
     <img src="/app/assets/images/occultum-logo.webp" alt="Occultum VPN Logo">
-    <a href="/">首页</a>
-    <a href="/app/#/login">登录</a>
-    <a href="/support">支持</a>
-    <a href="/guide">使用指南</a>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/app/#/login">登录</a>
+      <a href="/support">支持</a>
+      <a href="/guide">使用指南</a>
+    </div>
   </div>
   <div class="content">
     <h1>欢迎使用 Occultum VPN</h1>

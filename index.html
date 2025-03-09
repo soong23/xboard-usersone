@@ -53,42 +53,42 @@
     }
     .intro {
       max-width: 1440px;
-      margin: 80px auto;
-      padding: 15px;
+      margin: 20px auto;
+      padding: 80px; /* 元素距离边界 80px */
       background-color: #fff;
       color: #000;
       border-radius: 5px;
-      display: flex; /* 使用 Flexbox 实现图文布局 */
+      display: flex;
       align-items: center;
-      gap: 20px; /* 图片和文字之间的间距 */
+      gap: 60px; /* 图片和文字间距 60px */
     }
     .intro img {
-      max-width: 50%; /* 图片占约 50% 宽度 */
+      max-width: 40%;
       height: auto;
       border-radius: 5px;
     }
     .intro .text {
-      flex: 1; /* 文字部分占据剩余空间 */
+      flex: 1;
     }
     .features {
       max-width: 1440px;
       margin: 20px auto;
-      padding: 15px;
+      padding: 80px; /* 元素距离边界 80px */
       background-color: #fff;
       color: #000;
       border-radius: 5px;
     }
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 三列布局 */
-      gap: 20px; /* 列间距 */
+      grid-template-columns: repeat(3, 1fr);
+      gap: 60px; /* 优势项之间间距 60px */
     }
     .feature-item {
       padding: 10px;
       text-align: left;
     }
     .feature-item h4 {
-      margin: 0 0 5px 0;
+      margin: 0 0 10px 0; /* 标题和列表间距 */
     }
     .feature-item li {
       margin: 5px 0;
@@ -122,14 +122,20 @@
     }
     @media (max-width: 900px) {
       .intro {
-        flex-direction: column; /* 移动端堆叠显示 */
+        flex-direction: column;
         text-align: center;
+        padding: 40px; /* 移动端减少 padding */
+        gap: 30px; /* 移动端减少间距 */
       }
       .intro img {
-        max-width: 100%; /* 图片占满宽度 */
+        max-width: 100%;
+      }
+      .features {
+        padding: 40px; /* 移动端减少 padding */
       }
       .features-grid {
-        grid-template-columns: 1fr; /* 移动端单列 */
+        grid-template-columns: 1fr;
+        gap: 30px; /* 移动端减少间距 */
       }
       .content {
         margin: 20px;

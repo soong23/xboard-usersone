@@ -1,19 +1,44 @@
 // API地址
 window.routerBase = 'https://occultumvpn.com/'
 window.settings = {
-  // 站点名称
-  title: '',
-  // 站点描述
+  title: 'Occultum',
   description: '高速 安全 可靠',
   assets_path: '/assets',
-  // 主题色
   theme: {
-    color: 'default', //可选default、blue、black、、darkblue
+    color: 'default',
   },
-  // 版本号
   version: '0.1.1-dev',
-  // 登陆背景
   background_url: '/app/assets/images/global-internet.webp',
-  // 站点LOGO
   logo: '/app/assets/images/occultum-logo.webp',
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  // 背景效果
+  document.body.style.background = `url(${window.settings.background_url}) no-repeat center center fixed`;
+  document.body.style.backgroundSize = 'cover';
+  document.body.style.margin = '0';
+  document.body.style.padding = '0';
+  document.body.style.position = 'relative';
+  document.body.style.minHeight = '100vh';
+  const before = document.createElement('div');
+  before.style.position = 'fixed';
+  before.style.top = '0';
+  before.style.left = '0';
+  before.style.width = '100%';
+  before.style.height = '100%';
+  before.style.background = 'inherit';
+  before.style.filter = 'blur(3px) brightness(0.8)';
+  before.style.zIndex = '-1';
+  document.body.appendChild(before);
+
+  // 为 Logo 添加首页链接
+  const logoImg = document.querySelector('.text-center img[src="/app/assets/images/occultum-logo.webp"]') ||
+                  document.querySelector('.mb-1em.max-w-100%');
+  if (logoImg) {
+    const link = document.createElement('a');
+    link.href = 'https://shop.occultumvpn.com/';
+    link.style.display = 'inline-block'; // 保持布局
+    logoImg.parentNode.insertBefore(link, logoImg);
+    link.appendChild(logoImg);
+  }
+});

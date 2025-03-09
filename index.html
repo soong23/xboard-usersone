@@ -52,15 +52,19 @@
       text-align: center;
     }
     .intro {
-      max-width: 1440px;
+      max-width: 1440px; /* 外边框宽度限制为 1440px */
       margin: 20px auto;
-      padding: 80px; /* 元素距离边界 80px */
+      padding: 80px;
       background-color: #fff;
       color: #000;
       border-radius: 5px;
+    }
+    .intro-inner {
+      max-width: 1200px; /* 内部元素宽度限制为 1200px */
+      margin: 0 auto; /* 居中 */
       display: flex;
       align-items: center;
-      gap: 60px; /* 图片和文字间距 60px */
+      gap: 60px;
     }
     .intro img {
       max-width: 40%;
@@ -71,24 +75,28 @@
       flex: 1;
     }
     .features {
-      max-width: 1440px;
+      max-width: 1440px; /* 外边框宽度限制为 1440px */
       margin: 20px auto;
-      padding: 80px; /* 元素距离边界 80px */
+      padding: 80px;
       background-color: #fff;
       color: #000;
       border-radius: 5px;
     }
+    .features-inner {
+      max-width: 1200px; /* 内部元素宽度限制为 1200px */
+      margin: 0 auto; /* 居中 */
+    }
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 60px; /* 优势项之间间距 60px */
+      gap: 60px;
     }
     .feature-item {
       padding: 10px;
       text-align: left;
     }
     .feature-item h4 {
-      margin: 0 0 10px 0; /* 标题和列表间距 */
+      margin: 0 0 10px 0;
     }
     .feature-item li {
       margin: 5px 0;
@@ -122,20 +130,22 @@
     }
     @media (max-width: 900px) {
       .intro {
+        padding: 40px;
+      }
+      .intro-inner {
         flex-direction: column;
         text-align: center;
-        padding: 40px; /* 移动端减少 padding */
-        gap: 30px; /* 移动端减少间距 */
+        gap: 30px;
       }
       .intro img {
         max-width: 100%;
       }
       .features {
-        padding: 40px; /* 移动端减少 padding */
+        padding: 40px;
       }
       .features-grid {
         grid-template-columns: 1fr;
-        gap: 30px; /* 移动端减少间距 */
+        gap: 30px;
       }
       .content {
         margin: 20px;
@@ -164,32 +174,36 @@
     <a href="/app/#/login" class="login-btn">登录</a>
   </div>
   <div class="intro">
-    <img src="/app/assets/images/about-us.webp" alt="关于我们">
-    <div class="text">
-      <h3>关于我们</h3>
-      <p>Occultum VPN 提供全球范围内的安全网络连接，支持多平台，随时随地畅享无忧上网。</p>
+    <div class="intro-inner">
+      <img src="/app/assets/images/about-us.webp" alt="关于我们">
+      <div class="text">
+        <h3>关于我们</h3>
+        <p>Occultum VPN 提供全球范围内的安全网络连接，支持多平台，随时随地畅享无忧上网。</p>
+      </div>
     </div>
   </div>
   <div class="features">
-    <h3>我们的优势</h3>
-    <div class="features-grid">
-      <div class="feature-item">
-        <h4>隐私保护</h4>
-        <ul>
-          <li>无日志政策，保护隐私</li>
-        </ul>
-      </div>
-      <div class="feature-item">
-        <h4>高速连接</h4>
-        <ul>
-          <li>全球高速服务器</li>
-        </ul>
-      </div>
-      <div class="feature-item">
-        <h4>多设备支持</h4>
-        <ul>
-          <li>多设备同步支持</li>
-        </ul>
+    <div class="features-inner">
+      <h3>我们的优势</h3>
+      <div class="features-grid">
+        <div class="feature-item">
+          <h4>隐私保护</h4>
+          <ul>
+            <li>无日志政策，保护隐私</li>
+          </ul>
+        </div>
+        <div class="feature-item">
+          <h4>高速连接</h4>
+          <ul>
+            <li>全球高速服务器</li>
+          </ul>
+        </div>
+        <div class="feature-item">
+          <h4>多设备支持</h4>
+          <ul>
+            <li>多设备同步支持</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

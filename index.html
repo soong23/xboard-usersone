@@ -6,7 +6,7 @@
   <meta name="description" content="Occultum VPN - 提供安全、高效的全球网络连接服务。">
   <meta name="keywords" content="VPN, 隐私保护, 高速网络, Occultum VPN">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="preload" href="/app/assets/umi.js" as="script">
+  <link rel="preload" href="/app/assets/images/global-internet.webp" as="image">
   <title>Occultum VPN</title>
   <style>
     body {
@@ -15,15 +15,36 @@
       background-size: cover;
       margin: 0;
       padding: 0;
+      position: relative;
     }
-    .header {
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      filter: blur(3px) brightness(0.8);
+      z-index: -1;
+    }
+    .navbar {
       background-color: #003087;
-      color: white;
+      padding: 10px;
       text-align: center;
-      padding: 20px;
+    }
+    .navbar a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .navbar a:hover {
+      color: #007bff;
     }
     .content {
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
       max-width: 800px;
       margin: 50px auto;
       padding: 20px;
@@ -31,9 +52,11 @@
       text-align: center;
     }
     .intro, .features {
-      margin: 20px 0;
+      max-width: 1440px; /* 限制最大宽度 */
+      margin: 20px auto; /* 居中显示 */
       padding: 15px;
       background-color: #fff;
+      color: #000; /* 确保文本可读 */
       border-radius: 5px;
     }
     .features ul {
@@ -62,10 +85,10 @@
       background-color: #0056b3;
     }
     .footer {
-      text-align: center;
-      padding: 10px;
       background-color: #003087;
       color: white;
+      text-align: center;
+      padding: 10px;
       position: fixed;
       bottom: 0;
       width: 100%;
@@ -79,16 +102,26 @@
         font-size: 14px;
         padding: 8px 16px;
       }
+      .navbar a {
+        margin: 0 10px;
+        font-size: 14px;
+      }
+      .intro, .features {
+        margin: 10px;
+        padding: 10px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <h1>Occultum VPN</h1>
+  <div class="navbar">
+    <a href="/">首页</a>
+    <a href="/app/#/login">登录</a>
+    <a href="/support">支持</a>
   </div>
   <div class="content">
-    <h2>欢迎使用 Occultum VPN</h2>
-    <p>安全、高效的网络服务，保护您的隐私，加速您的网络体验。</p>
+    <h1>欢迎使用 Occultum VPN</h1>
+    <p>安全、高效的网络服务</p>
     <a href="/app/#/login" class="login-btn">登录</a>
   </div>
   <div class="intro">
@@ -104,7 +137,7 @@
     </ul>
   </div>
   <div class="footer">
-    <p>联系我们: support@occultumvpn.com | <a href="/support">帮助中心</a></p>
+    <p>© 2025 Occultum VPN. 联系我们: support@occultumvpn.com</p>
   </div>
 </body>
 </html>

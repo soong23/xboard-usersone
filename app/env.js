@@ -31,20 +31,44 @@ document.addEventListener('DOMContentLoaded', () => {
   before.style.zIndex = '-1';
   document.body.appendChild(before);
 
-  // 为 Logo 添加首页链接和样式
-  const logoImg = document.querySelector('.text-center img[src="/app/assets/images/occultum-logo.webp"]') ||
-                  document.querySelector('.mb-1em') ||
-                  document.querySelector('.max-w-100%') ||
-                  document.querySelector('.max-w-full');
-  if (logoImg) {
-    // 添加链接
-    const link = document.createElement('a');
-    link.href = 'https://shop.occultumvpn.com/';
-    link.style.display = 'inline-block';
-    logoImg.parentNode.insertBefore(link, logoImg);
-    link.appendChild(logoImg);
-    // 设置样式
-    logoImg.style.maxWidth = '80%';
-    logoImg.style.height = 'auto';
+  // 为 Logo 添加首页链接（初始加载）
+  addLogoLink();
+
+  // 监控 DOM 变化
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList' || mutation.type === 'subtree') {
+        const logoImg = document.querySelector('.text-center img[src="/app/assets/images/occultum-logo.webp"]') ||
+                       document.querySelector('.mb-1em') ||
+                       document.querySelector('.max-w-100%') ||
+                       document.querySelector('.max-w-full');
+        if (logoImg && !logoImg.parentElement.href) {
+          addLogoLink();
+        }
+      }
+    });
+  });
+
+  // 启动观察器，监控整个文档
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // 清理观察器（可选，防止内存泄漏）
+  window.addEventListener('unload', () => {
+    observer.disconnect();
+  });
+
+  // 添加链接的函数
+  function addLogoLink() {
+    const logoImg = document.querySelector('.text-center img[src="/app/assets/images/occultum-logo.webp"]') ||
+                    document.querySelector('.mb-1em') ||
+                    document.querySelector('.max-w-100%') ||
+                    document.querySelector('.max-w-full');
+    if (logoImg && !logoImg.parentElement.href) {
+      const link = document.createElement('a');
+      link.href = 'https://shop.occultumvpn.com/';
+      link.style.display = 'inline-block';
+      logoImg.parentNode.insertBefore(link, logoImg);
+      link.appendChild(logoImg);
+    }
   }
 });

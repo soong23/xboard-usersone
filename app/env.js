@@ -44,54 +44,35 @@ document.addEventListener('DOMContentLoaded', () => {
           updateLogo();
         }
 
-        // 检查 Xboard 是否已有 reCAPTCHA
-        const existingRecaptcha = document.querySelector('.g-recaptcha');
-        if (!existingRecaptcha) {
-          // 如果 Xboard 未添加，则动态添加
-          const registerForm = document.querySelector('form');
-          if (registerForm && !document.querySelector('.g-recaptcha')) {
-            const recaptchaDiv = document.createElement('div');
-            recaptchaDiv.className = 'g-recaptcha';
-            recaptchaDiv.setAttribute('data-sitekey', '6Le6QviAAAAAL9a_LiHYFBm1rry20K5uB');
-            recaptchaDiv.setAttribute('data-size', 'invisible');
-            recaptchaDiv.setAttribute('data-callback', 'onSubmit');
-            registerForm.appendChild(recaptchaDiv);
-          }
-        }
-
         // 绑定发送验证码按钮
         const sendButton = document.querySelector('button:not([disabled])[type="button"]');
         if (sendButton && sendButton.textContent.includes('发送') && !sendButton.dataset.recaptchaBound) {
           console.log('Found Send Button:', sendButton);
           sendButton.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log('Send Button Clicked, Executing reCAPTCHA');
-            if (typeof grecaptcha !== 'undefined') {
-              // 确保 grecaptcha 已加载
-              grecaptcha.ready(() => {
-                grecaptcha.execute('6Le6QviAAAAAL9a_LiHYFBm1rry20K5uB', { action: 'submit' }).then((token) => {
-                  console.log('reCAPTCHA Token:', token); // 直接处理 token
-                  const form = sendButton.closest('form');
-                  if (form) {
-                    let tokenInput = form.querySelector('textarea[name="recaptcha-response"]');
-                    if (tokenInput) {
-                      tokenInput.value = token;
-                      tokenInput.style.display = 'none';
-                      console.log('Token set in textarea:', tokenInput.value);
-                      // 触发 Xboard 原生逻辑
-                      sendButton.click();
-                    } else {
-                      console.error('recaptcha-response textarea not found');
-                    }
-                  } else {
-                    console.error('Form not found');
+            console.log('Send Button Clicked');
+            const form = sendButton.closest('form');
+            if (form) {
+              const tokenInput = form.querySelector('textarea[name="recaptcha-response"]');
+              if (tokenInput) {
+                console.log('reCAPTCHA Token from textarea:', tokenInput.value);
+                if (!tokenInput.value) {
+                  console.warn('reCAPTCHA token is empty, triggering manual verification if needed');
+                  // 如果 token 为空，尝试触发 Xboard 的 reCAPTCHA
+                  const recaptchaWidget = form.querySelector('.g-recaptcha');
+                  if (recaptchaWidget) {
+                    // 依赖 Xboard 内置逻辑
+                    sendButton.click(); // 再次触发以确保验证
                   }
-                }).catch((error) => {
-                  console.error('reCAPTCHA Execute Error:', error);
-                });
-              });
+                } else {
+                  // 直接提交表单
+                  sendButton.click();
+                }
+              } else {
+                console.error('recaptcha-response textarea not found');
+              }
             } else {
-              console.error('reCAPTCHA not loaded');
+              console.error('Form not found');
             }
           });
           sendButton.dataset.recaptchaBound = 'true';
@@ -115,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       link.href = 'https://shop.occultumvpn.com/';
       link.style.display = 'inline-block';
       logoImg.parentNode.insertBefore(link, logoImg);
-      link.appendChild(link);
+      link.appendChild(logoImg);
       logoImg.style.maxWidth = '80%';
       logoImg.style.height = 'auto';
     }

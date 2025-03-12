@@ -9,16 +9,20 @@ window.settings = {
   },
   version: '0.1.1-dev',
   background_url: '/app/assets/images/global-internet.webp',
-  logo: '/app/assets/images/occultum-logo.webp', // 默认 logo
+  logo: '/app/assets/images/occultum-logo.webp',
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 调试路径
+  console.log('Current Path:', window.location.pathname, window.location.hash);
+
   // 动态设置 logo 根据路径
-  if (window.location.hash.includes('admin') || window.location.pathname.includes('admin')) {
+  if (window.location.hash.includes('dashboard') || window.location.pathname.includes('dashboard')) {
     window.settings.logo = '/app/assets/images/admin-logo.webp'; // 后台页面 logo
   } else {
     window.settings.logo = '/app/assets/images/occultum-logo.webp'; // 其他页面 logo
   }
+  console.log('Selected Logo:', window.settings.logo);
 
   // 背景效果
   document.body.style.background = `url(${window.settings.background_url}) no-repeat center center fixed`;
@@ -45,10 +49,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList' || mutation.type === 'subtree') {
-        const logoImg = document.querySelector(`.text-center img[src*="${window.settings.logo}"]`) ||
-                        document.querySelector('.mb-1em.max-w-100%.max-w-full');
-        if (logoImg && (!logoImg.parentElement.href || logoImg.style.maxWidth !== '80%')) {
-          updateLogo();
+        const logoImg = document.querySelector(`img[src*="${window.settings.logo}"]`) ||
+                        document.querySelector('.text-center img') ||
+                        document.querySelector('.mb-1em.max-w-100%.max-w-full') ||
+                        document.querySelector('img');
+        if (logoImg && logoImg.src !== window.settings.logo) {
+          console.log('Logo changed by Xboard, updating to:', window.settings.logo);
+          logoImg.src = window.settings.logo;
+          const parent = logoImg.parentElement;
+          if (parent.tagName === 'A') {
+            parent.replaceWith(logoImg);
+          }
+          const link = document.createElement('a');
+          link.href = 'https://shop.occultumvpn.com/';
+          link.style.display = 'inline-block';
+          logoImg.parentNode.insertBefore(link, logoImg);
+          link.appendChild(logoImg);
+          logoImg.style.maxWidth = '80%';
+          logoImg.style.height = 'auto';
         }
       }
     });
@@ -58,11 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 更新 Logo 的链接和样式的函数
   function updateLogo() {
-    const logoImg = document.querySelector(`.text-center img[src*="${window.settings.logo}"]`) ||
-                    document.querySelector('.mb-1em.max-w-100%.max-w-full');
+    const logoImg = document.querySelector(`img[src*="${window.settings.logo}"]`) ||
+                    document.querySelector('.text-center img') ||
+                    document.querySelector('.mb-1em.max-w-100%.max-w-full') ||
+                    document.querySelector('img');
     if (logoImg) {
-      // 更新 logo 的 src
-      logoImg.src = window.settings.logo; // 确保使用动态 logo
+      console.log('Found Logo Element:', logoImg);
+      logoImg.src = window.settings.logo;
       const parent = logoImg.parentElement;
       if (parent.tagName === 'A') {
         parent.replaceWith(logoImg);
@@ -74,6 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
       link.appendChild(logoImg);
       logoImg.style.maxWidth = '80%';
       logoImg.style.height = 'auto';
+    } else {
+      console.error('Logo element not found');
     }
   }
 });

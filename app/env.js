@@ -1,7 +1,7 @@
 // API地址
 window.routerBase = 'https://occultumvpn.com/'
 window.settings = {
-  title: 'O',
+  title: 'Occultum',
   description: '高速 安全 可靠',
   assets_path: '/assets',
   theme: {
@@ -9,10 +9,17 @@ window.settings = {
   },
   version: '0.1.1-dev',
   background_url: '/app/assets/images/global-internet.webp',
-  logo: '/app/assets/images/occultum-logo.webp',
+  logo: '/app/assets/images/occultum-logo.webp', // 默认 logo
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 动态设置 logo 根据路径
+  if (window.location.hash.includes('admin') || window.location.pathname.includes('admin')) {
+    window.settings.logo = '/app/assets/images/admin-logo.webp'; // 后台页面 logo
+  } else {
+    window.settings.logo = '/app/assets/images/occultum-logo.webp'; // 其他页面 logo
+  }
+
   // 背景效果
   document.body.style.background = `url(${window.settings.background_url}) no-repeat center center fixed`;
   document.body.style.backgroundSize = 'cover';
@@ -38,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList' || mutation.type === 'subtree') {
-        const logoImg = document.querySelector('.text-center img[src*="/app/assets/images/occultum-logo.webp"]') ||
+        const logoImg = document.querySelector(`.text-center img[src*="${window.settings.logo}"]`) ||
                         document.querySelector('.mb-1em.max-w-100%.max-w-full');
         if (logoImg && (!logoImg.parentElement.href || logoImg.style.maxWidth !== '80%')) {
           updateLogo();
@@ -51,9 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 更新 Logo 的链接和样式的函数
   function updateLogo() {
-    const logoImg = document.querySelector('.text-center img[src*="/app/assets/images/occultum-logo.webp"]') ||
+    const logoImg = document.querySelector(`.text-center img[src*="${window.settings.logo}"]`) ||
                     document.querySelector('.mb-1em.max-w-100%.max-w-full');
     if (logoImg) {
+      // 更新 logo 的 src
+      logoImg.src = window.settings.logo; // 确保使用动态 logo
       const parent = logoImg.parentElement;
       if (parent.tagName === 'A') {
         parent.replaceWith(logoImg);

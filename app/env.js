@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 动态设置 logo 根据路径
   if (window.location.hash.includes('dashboard') || window.location.pathname.includes('dashboard')) {
-    window.settings.logo = '/app/assets/images/admin-logo.webp'; // 后台页面 logo
+    window.settings.logo = '/app/assets/images/admin-logo.webp';
   } else {
-    window.settings.logo = '/app/assets/images/occultum-logo.webp'; // 其他页面 logo
+    window.settings.logo = '/app/assets/images/occultum-logo.webp';
   }
   console.log('Selected Logo:', window.settings.logo);
 
@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mutation.type === 'childList' || mutation.type === 'subtree') {
         const logoImg = document.querySelector(`img[src*="${window.settings.logo}"]`) ||
                         document.querySelector('.text-center img') ||
-                        document.querySelector('.mb-1em.max-w-100%.max-w-full') ||
                         document.querySelector('img');
         if (logoImg && logoImg.src !== window.settings.logo) {
           console.log('Logo changed by Xboard, updating to:', window.settings.logo);
@@ -78,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateLogo() {
     const logoImg = document.querySelector(`img[src*="${window.settings.logo}"]`) ||
                     document.querySelector('.text-center img') ||
-                    document.querySelector('.mb-1em.max-w-100%.max-w-full') ||
                     document.querySelector('img');
     if (logoImg) {
       console.log('Found Logo Element:', logoImg);

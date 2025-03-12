@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 添加 reCAPTCHA 到注册页面
-        const registerForm = document.querySelector('form'); // 假设注册表单是 <form>
+        const registerForm = document.querySelector('form');
         if (registerForm && !document.querySelector('.g-recaptcha')) {
           const recaptchaDiv = document.createElement('div');
           recaptchaDiv.className = 'g-recaptcha';
@@ -56,11 +56,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 绑定发送验证码按钮
-        const sendButton = document.querySelector('#send-code-button'); // 替换为实际按钮 ID
-        if (sendButton && !sendButton.dataset.recaptchaBound) {
+        const sendButton = document.querySelector('button:not([disabled])[type="button"]'); // 定位“发送”按钮
+        if (sendButton && sendButton.textContent.includes('发送') && !sendButton.dataset.recaptchaBound) {
+          console.log('Found Send Button:', sendButton); // 调试按钮定位
           sendButton.addEventListener('click', (e) => {
             e.preventDefault();
-            grecaptcha.execute();
+            console.log('Send Button Clicked, Executing reCAPTCHA'); // 调试点击
+            if (typeof grecaptcha !== 'undefined') {
+              grecaptcha.execute();
+            } else {
+              console.error('reCAPTCHA not loaded');
+            }
           });
           sendButton.dataset.recaptchaBound = 'true';
         }
@@ -91,19 +97,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // reCAPTCHA 回调函数
   window.onSubmit = function(token) {
+    console.log('reCAPTCHA Token:', token); // 调试输出
     const form = document.querySelector('form');
     if (form) {
-      // 添加隐藏字段存储 token
-      let tokenInput = form.querySelector('input[name="g-recaptcha-response"]');
-      if (!tokenInput) {
-        tokenInput = document.createElement('input');
-        tokenInput.type = 'hidden';
-        tokenInput.name = 'g-recaptcha-response';
-        form.appendChild(tokenInput);
+      // 使用 Xboard 内置的 textarea 存储 token
+      let tokenInput = form.querySelector('textarea[name="recaptcha-response"]');
+      if (tokenInput) {
+        tokenInput.value = token;
+        tokenInput.style.display = 'none'; // 确保隐藏
+        console.log('Token set in textarea:', tokenInput.value); // 调试输出
+        // 直接触发发送请求（模拟点击“发送”按钮的原生行为）
+        const sendButton = document.querySelector('button:not([disabled])[type="button"]');
+        if (sendButton) {
+          sendButton.click();
+        }
+      } else {
+        console.error('recaptcha-response textarea not found');
       }
-      tokenInput.value = token;
-      console.log('reCAPTCHA Token:', token); // 调试输出
-      form.submit();
+    } else {
+      console.error('Form not found');
     }
   };
 });

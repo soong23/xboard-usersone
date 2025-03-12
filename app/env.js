@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         form.appendChild(tokenInput);
       }
       tokenInput.value = token;
+      console.log('reCAPTCHA Token:', token); // 调试输出
       form.submit();
     }
   };

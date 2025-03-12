@@ -43,6 +43,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (logoImg && (!logoImg.parentElement.href || logoImg.style.maxWidth !== '80%')) {
           updateLogo();
         }
+
+        // 添加 reCAPTCHA 到注册页面
+        const registerForm = document.querySelector('form'); // 假设注册表单是 <form>
+        if (registerForm && !document.querySelector('.g-recaptcha')) {
+          const recaptchaDiv = document.createElement('div');
+          recaptchaDiv.className = 'g-recaptcha';
+          recaptchaDiv.setAttribute('data-sitekey', '6Le6QviAAAAAL9a_LiHYFBm1rry20K5uB');
+          recaptchaDiv.setAttribute('data-size', 'invisible');
+          recaptchaDiv.setAttribute('data-callback', 'onSubmit');
+          registerForm.appendChild(recaptchaDiv);
+        }
+
+        // 绑定发送验证码按钮
+        const sendButton = document.querySelector('#send-code-button'); // 替换为实际按钮 ID
+        if (sendButton && !sendButton.dataset.recaptchaBound) {
+          sendButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            grecaptcha.execute();
+          });
+          sendButton.dataset.recaptchaBound = 'true';
+        }
       }
     });
   });
@@ -67,4 +88,21 @@ document.addEventListener('DOMContentLoaded', () => {
       logoImg.style.height = 'auto';
     }
   }
+
+  // reCAPTCHA 回调函数
+  window.onSubmit = function(token) {
+    const form = document.querySelector('form');
+    if (form) {
+      // 添加隐藏字段存储 token
+      let tokenInput = form.querySelector('input[name="g-recaptcha-response"]');
+      if (!tokenInput) {
+        tokenInput = document.createElement('input');
+        tokenInput.type = 'hidden';
+        tokenInput.name = 'g-recaptcha-response';
+        form.appendChild(tokenInput);
+      }
+      tokenInput.value = token;
+      form.submit();
+    }
+  };
 });

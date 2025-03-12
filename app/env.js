@@ -43,40 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (logoImg && (!logoImg.parentElement.href || logoImg.style.maxWidth !== '80%')) {
           updateLogo();
         }
-
-        // 绑定发送验证码按钮
-        const sendButton = document.querySelector('button:not([disabled])[type="button"]');
-        if (sendButton && sendButton.textContent.includes('发送') && !sendButton.dataset.recaptchaBound) {
-          console.log('Found Send Button:', sendButton);
-          sendButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            console.log('Send Button Clicked');
-            const form = sendButton.closest('form');
-            if (form) {
-              const tokenInput = form.querySelector('textarea[name="recaptcha-response"]');
-              if (tokenInput) {
-                console.log('reCAPTCHA Token from textarea:', tokenInput.value);
-                if (!tokenInput.value) {
-                  console.warn('reCAPTCHA token is empty, triggering manual verification if needed');
-                  // 如果 token 为空，尝试触发 Xboard 的 reCAPTCHA
-                  const recaptchaWidget = form.querySelector('.g-recaptcha');
-                  if (recaptchaWidget) {
-                    // 依赖 Xboard 内置逻辑
-                    sendButton.click(); // 再次触发以确保验证
-                  }
-                } else {
-                  // 直接提交表单
-                  sendButton.click();
-                }
-              } else {
-                console.error('recaptcha-response textarea not found');
-              }
-            } else {
-              console.error('Form not found');
-            }
-          });
-          sendButton.dataset.recaptchaBound = 'true';
-        }
       }
     });
   });
